@@ -1,19 +1,23 @@
 let postsArr = [];
 
-fetch('https://apis.scrimba.com/jsonplaceholder/posts')
-    .then(response => response.json())
-    .then(data => {
-        postsArr = data.slice(0, 5);
-        //console.log(postsArr);
-        /*for (let post of postsArr) {
-            document.querySelector('.post').innerHTML += 
-            `
+const renderPosts = () => {
+    postsArr = data.slice(0, 5);
+    let html = "";
+        for (let post of postsArr) {
+            html += `
                 <h3>${post.title}</h3>
                 <p>${post.body}</p> 
                 <hr />   
             `
-        }*/
-    });
+        }
+        document.querySelector('.post').innerHTML = html
+}
+
+fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+    .then(response => response.json())
+    .then(data => renderPosts()
+        
+    );
 
 document.querySelector('.new-form').addEventListener('submit', (event) => {
     event.preventDefault();
