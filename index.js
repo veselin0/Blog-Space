@@ -12,17 +12,30 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
             `
         }
     });
+
+document.querySelector('.new-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const postTitle = document.querySelector('#title').value;
+    const postBody = document.querySelector('#body').value;
+    const blog = {
+        title : postTitle,
+        body : postBody
+    };
+    console.log(blog);
+});    
     
 /**
  Challenge:
-
- With the 5 blog post objects, display the `title` and `body`
-properties of the first 5 posts on the browser page.
  
- Hints: 
- * Create a `div` in the HTML file to store these items
- * Loop over the items creating a string of HTML elements you 
-   can then put into the div with `innerHTML`
- */
+ * Listen for the "submit" event on the form (which will happen 
+ when the button is clicked)
+    * (Don't forget to preventDefault on the form so it doesn't 
+ refresh your page. Google "form preventDefault" if you're not 
+ sure what I'm talking about)
+ * Combine the title value and body value into an object (with 
+ a "title" property and "body" property)
+ * Log the object to the console
+
+*/
 
    
