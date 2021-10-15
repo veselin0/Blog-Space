@@ -21,7 +21,15 @@ document.querySelector('.new-form').addEventListener('submit', (event) => {
         title : postTitle,
         body : postBody
     };
-    console.log(blog);
+    fetch('https://apis.scrimba.com/jsonplaceholder/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(blog)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data));
 });    
     
 /**
