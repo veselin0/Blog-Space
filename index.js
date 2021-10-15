@@ -19,7 +19,8 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
         renderPosts();
     });
 
-document.querySelector('.new-form').addEventListener('submit', (event) => {
+const newForm = document.querySelector('.new-form'); 
+newForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const postTitle = document.querySelector('#title').value;
     const postBody = document.querySelector('#body').value;
@@ -35,9 +36,12 @@ document.querySelector('.new-form').addEventListener('submit', (event) => {
         body: JSON.stringify(blog)
     })
     .then(response => response.json())
-    .then(post => {
-        postsArr.unshift(post)
-        renderPosts();
+    .then(post => { 
+        if (postTitle && postBody) {
+            postsArr.unshift(post)
+            renderPosts();
+            newForm.reset();
+        }     
     });
 });    
     
