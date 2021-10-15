@@ -1,16 +1,18 @@
+let postsArr = [];
+
 fetch('https://apis.scrimba.com/jsonplaceholder/posts')
     .then(response => response.json())
     .then(data => {
-        const postsArr = data.slice(0, 5);
-        console.log(postsArr);
-        for (let post of postsArr) {
+        postsArr = data.slice(0, 5);
+        //console.log(postsArr);
+        /*for (let post of postsArr) {
             document.querySelector('.post').innerHTML += 
             `
                 <h3>${post.title}</h3>
                 <p>${post.body}</p> 
                 <hr />   
             `
-        }
+        }*/
     });
 
 document.querySelector('.new-form').addEventListener('submit', (event) => {
@@ -29,21 +31,20 @@ document.querySelector('.new-form').addEventListener('submit', (event) => {
         body: JSON.stringify(blog)
     })
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+        postsArr.unshift(data)
+        //postsArr = data.slice(0, 5);
+        //console.log(postsArr);
+        for (let post of postsArr) {
+            document.querySelector('.post').innerHTML += 
+            `
+                <h3>${post.title}</h3>
+                <p>${post.body}</p> 
+                <hr />   
+            `
+    };
 });    
     
-/**
- Challenge:
- 
- * Listen for the "submit" event on the form (which will happen 
- when the button is clicked)
-    * (Don't forget to preventDefault on the form so it doesn't 
- refresh your page. Google "form preventDefault" if you're not 
- sure what I'm talking about)
- * Combine the title value and body value into an object (with 
- a "title" property and "body" property)
- * Log the object to the console
 
-*/
 
-   
+});  
